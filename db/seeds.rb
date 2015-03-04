@@ -64,25 +64,27 @@ User.all.each do |user|
 
     # random_user = User.offset(rand(User.count)).first
 
-    photo.owner = user
+    photo.owner_id = user.id
 
     photo.save
 
     comment_messages = ["Very pretty", "My favorite one", "Kinda meh"]
 
     3.times do
-      comment = photo.comments.build
+      comment = Comment.new
 
+      comment.photo_id = photo.id
       comment.content = comment_messages.sample
-      comment.commenter = User.offset(rand(User.count)).first
+      comment.commenter_id = User.offset(rand(User.count)).first.id
 
       comment.save
     end
 
     3.times do
-      favoriting = photo.favoritings.build
+      favoriting = Favoriting.new
 
-      favoriting.favorited_by = User.offset(rand(User.count)).first
+      favoriting.photo_id = photo.id
+      favoriting.favorited_by_id = User.offset(rand(User.count)).first.id
 
       favoriting.save
     end
