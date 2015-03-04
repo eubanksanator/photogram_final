@@ -10,16 +10,16 @@ end
 
 puts "There are now #{User.count} users in the database."
 
-User.all.each do |user|
-  5.times do
-    following = Following.new
-    following.leader = user
-    following.follower = User.offset(rand(User.count)).first
-    following.save
-  end
-end
+# User.all.each do |user|
+#   5.times do
+#     following = Following.new
+#     following.leader = user
+#     following.follower = User.offset(rand(User.count)).first
+#     following.save
+#   end
+# end
 
-puts "There are now #{Following.count} followings in the database."
+# puts "There are now #{Following.count} followings in the database."
 
 photo_info = [
   {
