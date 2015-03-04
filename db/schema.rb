@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304200543) do
+ActiveRecord::Schema.define(version: 20150304200625) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 20150304200543) do
     t.integer  "commenter_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "favoritings", force: :cascade do |t|
+    t.integer  "photo_id"
+    t.integer  "favorited_by_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "photos", force: :cascade do |t|

@@ -1,0 +1,25 @@
+<%= form_for(@favoriting) do |f| %>
+  <% if @favoriting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@favoriting.errors.count, "error") %> prohibited this favoriting from being saved:</h2>
+
+      <ul>
+      <% @favoriting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :photo_id %><br>
+    <%= f.number_field :photo_id %>
+  </div>
+  <div class="field">
+    <%= f.label :favorited_by_id %><br>
+    <%= f.number_field :favorited_by_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
