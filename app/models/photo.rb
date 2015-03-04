@@ -8,6 +8,8 @@ class Photo < ActiveRecord::Base
   #   return User.find_by :id => self.owner_id
   # end
 
+  has_many :comments
+  has_many :favoritings
 
 end
 
@@ -17,9 +19,9 @@ end
 # Favoriting should belong to a favorited_by (User)
 # Favoriting should belong to a photo
 
-# User should have many comments
-# User should have many own_photos (Photos)
-# User should have many favoritings
+# User should have many comments (foreign key: commenter_id)
+# User should have many own_photos (foreign_key: owner_id)
+# User should have many favoritings (foreign key: favorited_by_id)
 # Photo should have many comments
 # Photo should have many favoritings
 
