@@ -8,16 +8,19 @@
 <div class="row">
   <div class="col-md-offset-2 col-md-4">
     <div class="panel panel-default">
-      <div class="panel-body">
-        <h3>My followers (the count)</h3>
-      </div>
+      <ul class="list-group">
+        <li class="list-group-item active">My followers (<%= @user.followers.count %>)</li>
+        <% @user.followers.each do |user| %>
+          <li class="list-group-item"><%= user.email %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
-        <h3>My leaders (the count)</h3>
+        <h3>My leaders (<%= @user.leaders.count %>)</h3>
       </div>
     </div>
   </div>
