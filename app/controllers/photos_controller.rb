@@ -9,6 +9,14 @@ class PhotosController < ApplicationController
     end
   end
 
+  def my_own
+    @photos = current_user.own_photos
+  end
+
+  def my_favorites
+    @photos = current_user.favorite_photos
+  end
+
   # GET /photos
   # GET /photos.json
   def index
