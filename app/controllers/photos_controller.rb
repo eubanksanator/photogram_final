@@ -1,10 +1,18 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
 
+  before_action :current_user_must_be_owner, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_owner
+    if current_user != @photo.owner
+      redirect_to :back, :notice => "Nice try, sucker!"
+    end
+  end
+
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @photos = Photo.page(params[:page]).per(10)
   end
 
   # GET /photos/1

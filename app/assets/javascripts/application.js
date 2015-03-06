@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+//= require jquery.infinitescroll
+
+$("#photos").append("<tbody class='page'><%= escape_javascript(render(@photos)) %></tbody>");

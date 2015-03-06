@@ -1,0 +1,51 @@
+<div class="row photo">
+  <div class="col-md-offset-1 col-md-2">
+    <%= photo.owner.email %>
+  </div>
+  <div class="col-md-6 panel panel-default">
+    <div class="panel-body">
+      <%= image_tag photo.image, :class => "img-responsive" %>
+      <p class="lead"><%= photo.caption %></p>
+      <div class="btn-group btn-group-justified">
+
+        <% fave = Favoriting.find_by({ :photo_id => photo.id, :favorited_by_id => current_user.id }) %>
+
+        <% if fave.present? %>
+          <%= link_to icon('heart'), favoriting_url(fave), :method => "delete", :class => "btn btn-danger" %>
+        <% else %>
+          <%= link_to icon('heart-o'), favoritings_url(:favoriting => { :photo_id => photo.id, :favorited_by_id => current_user.id }), :method => "post", :class => "btn btn-default" %>
+        <% end %>
+
+        <% if current_user == photo.owner %>
+          <%= link_to icon('edit'), edit_photo_url(photo), :class => "btn btn-warning" %>
+          <%= link_to icon('trash-o'), photo_url(photo), :method => "delete", :class => "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+    <ul class="media-list">
+      <% photo.comments.each do |comment| %>
+        <%= render 'comments/comment', :comment => comment %>
+      <% end %>
+      <li class="media">
+        <% comment = Comment.new %>
+        <% comment.photo_id = photo.id %>
+
+        <%# comment = photo.comments.build %>
+
+        <% comment.commenter_id = current_user.id %>
+        <%= form_for comment do |f| %>
+          <%= f.text_field :content, :class => "form-control", :placeholder => "Add your comment" %>
+          <%= f.hidden_field :photo_id %>
+          <%= f.hidden_field :commenter_id %>
+        <% end %>
+<!--
+        <%= form_tag comments_url do %>
+          <input name="comment[content]" type="text">
+          <input name="comment[commenter_id]" type="hidden" value="<%= current_user.id %>">
+          <input name="comment[photo_id]" type="hidden" value="<%= photo.id %>">
+        <% end %> -->
+
+      </li>
+    </ul>
+  </div>
+</div>

@@ -25,7 +25,7 @@
       <div class="panel-body">
         <dl>
           <dt>Photo</dt>
-          <dd><%= favoriting.photo.caption %></dd>
+          <dd><%= favoriting.photo.try(:caption) %></dd>
 
           <dt>Favorited by</dt>
           <dd><%= favoriting.favorited_by.email %></dd>

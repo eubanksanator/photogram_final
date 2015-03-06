@@ -9,7 +9,7 @@ class Photo < ActiveRecord::Base
   # end
 
   has_many :comments
-  has_many :favoritings
+  has_many :favoritings, :dependent => :destroy
 
   validates :owner, :presence => true
   validates :image, :presence => true
