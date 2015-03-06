@@ -32,3 +32,4 @@ To begin with, these are the tables that we'll need:
   - Use whatever techniques make the most sense, but a hint: it is possible to make it work using only the long-shortcut for assocation methods.
  - Make the "Follow this person" links on the users#show pages work.
   - If I already follow the user, I should see an "Unfollow this person" link instead.
+  - Make it so that I can't follow the same person twice.
