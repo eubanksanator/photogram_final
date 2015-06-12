@@ -3,6 +3,11 @@ class PhotosController < ApplicationController
 
   before_action :current_user_must_be_owner, :only => [:edit, :update, :destroy]
 
+
+  def timeline
+
+  end
+
   def current_user_must_be_owner
     if current_user != @photo.owner
       redirect_to :back, :notice => "Nice try, sucker!"
